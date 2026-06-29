@@ -58,15 +58,15 @@ benchmark[name_String, fRust_, fWL_, data_] := Module[
 ]
 
 Print["\nStarting benchmarks..."];
-benchmark["EllipK / EllipticK", EllipK, EllipticK, dataLegendre1D];
-benchmark["EllipE / EllipticE", EllipE, EllipticE, dataLegendre1D];
-benchmark["EllipPi / EllipticPi", EllipPi, EllipticPi, dataLegendre2D];
-benchmark["EllipD / (K-E)/m", EllipD, (EllipticK[#] - EllipticE[#])/# &, dataLegendre1D];
+benchmark["rEllipticK / EllipticK", rEllipticK, EllipticK, dataLegendre1D];
+benchmark["rEllipticE / EllipticE", rEllipticE, EllipticE, dataLegendre1D];
+benchmark["rEllipticPi / EllipticPi", rEllipticPi, EllipticPi, dataLegendre2D];
+benchmark["rEllipticD / (K-E)/m", rEllipticD, (EllipticK[#] - EllipticE[#])/# &, dataLegendre1D];
 
-benchmark["EllipRF / CarlsonRF", EllipRF, CarlsonRF, dataCarlson3D];
-benchmark["EllipRG / CarlsonRG", EllipRG, CarlsonRG, dataCarlson3D];
-benchmark["EllipRD / CarlsonRD", EllipRD, CarlsonRD, dataCarlson3D];
-benchmark["EllipRJ / CarlsonRJ", EllipRJ, CarlsonRJ, dataCarlson4D];
-benchmark["EllipRC / CarlsonRC", EllipRC, CarlsonRC, dataCarlson2D];
+benchmark["rCarlsonRF / CarlsonRF", rCarlsonRF, CarlsonRF, dataCarlson3D];
+benchmark["rCarlsonRG / CarlsonRG", rCarlsonRG, CarlsonRG, dataCarlson3D];
+benchmark["rCarlsonRD / CarlsonRD", rCarlsonRD, CarlsonRD, dataCarlson3D];
+benchmark["rCarlsonRJ / CarlsonRJ", rCarlsonRJ, CarlsonRJ, dataCarlson4D];
+benchmark["rCarlsonRC / CarlsonRC", rCarlsonRC, CarlsonRC, dataCarlson2D];
 
 Print["Benchmarks completed!"];
