@@ -1,0 +1,12 @@
+[package]
+name = "ellip_link"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "ellip_link"
+crate-type = ["cdylib"]
+
+[dependencies]
+ellip = "1.0.0"
+wolfram-library-link = "0.2"
