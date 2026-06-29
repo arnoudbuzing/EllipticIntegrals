@@ -26,7 +26,7 @@ $libPrefix = If[StringMatchQ[$SystemID, "Windows*"], "", "lib"];
 $libName = $libPrefix <> "ellip_link" <> $libExtension;
 
 $srcPath = FileNameJoin[{$projectDir, "target", "release", $libName}];
-$destDir = FileNameJoin[{$projectDir, "Ellip", "LibraryResources", $SystemID}];
+$destDir = FileNameJoin[{$projectDir, "EllipticIntegrals", "LibraryResources", $SystemID}];
 $destPath = FileNameJoin[{$destDir, $libName}];
 
 If[!DirectoryQ[$destDir],

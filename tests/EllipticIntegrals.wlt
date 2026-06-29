@@ -2,7 +2,7 @@
 
 (* Setup: load the package *)
 VerificationTest[
-  Needs["ArnoudBuzing`Ellip`"],
+  Needs["ArnoudBuzing`EllipticIntegrals`"],
   Null,
   TestID -> "load-package"
 ]

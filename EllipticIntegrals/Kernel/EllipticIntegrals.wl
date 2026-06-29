@@ -1,4 +1,4 @@
-BeginPackage["ArnoudBuzing`Ellip`"]
+BeginPackage["ArnoudBuzing`EllipticIntegrals`"]
 
 EllipK::usage = "EllipK[m] computes the complete elliptic integral of the first kind K(m)."
 EllipE::usage = "EllipE[m] computes the complete elliptic integral of the second kind E(m)."

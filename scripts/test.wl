@@ -1,7 +1,7 @@
 (* Test runner script *)
 
 $projectDir = DirectoryName[DirectoryName[$InputFileName]];
-$pacletDir = FileNameJoin[{$projectDir, "Ellip"}];
+$pacletDir = FileNameJoin[{$projectDir, "EllipticIntegrals"}];
 
 (* Add local paclet directory *)
 PacletDirectoryLoad[$pacletDir];

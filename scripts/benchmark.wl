@@ -1,10 +1,10 @@
 (* Benchmark script comparing Rust vs WL built-in elliptic functions *)
 
 $projectDir = DirectoryName[DirectoryName[$InputFileName]];
-$pacletDir = FileNameJoin[{$projectDir, "Ellip"}];
+$pacletDir = FileNameJoin[{$projectDir, "EllipticIntegrals"}];
 
 PacletDirectoryLoad[$pacletDir];
-Needs["ArnoudBuzing`Ellip`"];
+Needs["ArnoudBuzing`EllipticIntegrals`"];
 
 Print["Generating benchmark datasets (10,000 elements each)..."];
 SeedRandom[12345];
