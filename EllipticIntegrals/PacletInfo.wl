@@ -1,7 +1,9 @@
+(* ::Package:: *)
+
 PacletObject[
   <|
     "Name" -> "ArnoudBuzing/EllipticIntegrals",
-    "Description" -> "Wolfram Language bindings for the Rust ellip crate (elliptic integrals)",
+    "Description" -> "Wolfram Language bindings for the Rust elliptic integrals crate",
     "Creator" -> "Arnoud Buzing",
     "License" -> "MIT",
     "PublisherID" -> "ArnoudBuzing",
