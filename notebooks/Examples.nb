@@ -1,0 +1,458 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     17993,        449]
+NotebookOptionsPosition[     13919,        397]
+NotebookOutlinePosition[     14236,        411]
+CellTagsIndexPosition[     14193,        408]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["EllipticIntegrals Paclet Examples", "Title",ExpressionUUID->"ffa1ea89-2123-4a65-9701-a499869cee9d"],
+
+Cell[TextData[{
+ "This notebook demonstrates how to load and use the ",
+ Cell[BoxData[Cell["ArnoudBuzing/EllipticIntegrals",
+   Background->None,ExpressionUUID->"32ce6c1e-4c1d-4ea8-9124-ed47440ac2ee"]], 
+  "InlineCode",ExpressionUUID->"1b34389e-796b-4efb-9f48-d0959e1ec55c"],
+ " paclet. "
+}], "Text",ExpressionUUID->"696aa3b2-7970-4921-8161-1ab3cf361a01"],
+
+Cell["Loading the Paclet", "Section",ExpressionUUID->"941bdcbe-0681-4540-88ea-e95c5aaad4c5"],
+
+Cell["\<\
+First, ensure the paclet is loaded in your Wolfram Language session. We load \
+it using the directory path: \
+\>", "CodeText",ExpressionUUID->"f1118012-e0bd-45da-9b93-78fec0b0ca31"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Load", " ", "local", " ", "paclet"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"PacletDirectoryLoad", "[", 
+     RowBox[{"DirectoryName", "[", 
+      RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+   "Needs", "[", "\"\<ArnoudBuzing`EllipticIntegrals`\>\"", 
+    "]"}]}]}]], "Input",ExpressionUUID->"1b54d8a7-b26a-4f9f-8f8f-\
+6a4f4e19a209"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"8117d7d2-0511-46d7-8641-4c336ec6218d"],
+
+Cell["Legendre Complete Elliptic Integrals", "Section",ExpressionUUID->"60398cf2-7850-4a1c-97f8-c68e6fce9ed0"],
+
+Cell[TextData[{
+ "The complete elliptic integrals are defined in terms of the parameter ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       StyleBox["m", "TI"], TraditionalForm], "errors" -> {}, "input" -> "m", 
+     "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "70caef29-ad08-44a8-b0b7-281968809356"],
+ ". "
+}], "Text",ExpressionUUID->"df09e999-646e-4398-866e-281746f3c058"],
+
+Cell[TextData[{
+ "Complete Elliptic Integral of the First Kind: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["K", "TI"], "(", 
+         StyleBox["m", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "K(m)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "33acc853-b9ac-4e0d-a0d9-138c46590804"]
+}], "Subsection",ExpressionUUID->"e2aa5cf2-ccec-4b71-851b-23f5a79a1054"],
+
+Cell["Evaluate $K(0.5)$ using the Rust binding: ", "CodeText",ExpressionUUID->"1cdbc98c-cbbf-4d8a-9016-eea156d1b12d"],
+
+Cell[BoxData[
+ RowBox[{"rEllipticK", "[", "0.5", "]"}]], "Input",ExpressionUUID->"d97b17ab-d521-45f9-842e-4cd784a48b37"],
+
+Cell[TextData[{
+ "Compare with the built-in ",
+ Cell[BoxData[
+  TemplateBox[{
+   "EllipticK", "paclet:ref/EllipticK", 
+    "https://reference.wolfram.com/language/ref/EllipticK.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "d4e22b8e-89ff-4dbe-8683-90a1209f1370"],
+ ": "
+}], "CodeText",ExpressionUUID->"f3b9841c-6ff2-4807-98db-17f8828f4a17"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rEllipticK", "[", "0.5", "]"}], "-", 
+  RowBox[{"EllipticK", "[", "0.5", "]"}]}]], "Input",ExpressionUUID->\
+"8229d350-c625-48b8-9ca9-4273e8c57aa6"],
+
+Cell[TextData[{
+ "Complete Elliptic Integral of the Second Kind: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["E", "TI"], "(", 
+         StyleBox["m", "TI"], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "E(m)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "7e3659b1-e8cb-47b6-8964-5c84615a9c78"]
+}], "Subsection",ExpressionUUID->"7b580c18-9564-4e29-8d35-2bd2d58f4ace"],
+
+Cell["Evaluate $E(0.5)$: ", "CodeText",ExpressionUUID->"51df9b93-ed85-4ab1-a7f4-21cc0868dd9f"],
+
+Cell[BoxData[
+ RowBox[{"rEllipticE", "[", "0.5", "]"}]], "Input",ExpressionUUID->"dd5ad505-9524-4a2b-a93f-647ac81a4c09"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"751c0b2a-e5d4-4ff4-bbe3-be26c14efd07"],
+
+Cell["Legendre Incomplete Elliptic Integrals", "Section",ExpressionUUID->"a5f3670a-680b-4a13-b29a-3a45605ae240"],
+
+Cell[TextData[{
+ "Incomplete Elliptic Integral of the Second Kind: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["E", "TI"], "(", 
+         RowBox[{"\[Phi]", ",", 
+           StyleBox["m", "TI"]}], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "E(\\phi, m)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "58f938a8-b491-4a03-b013-a46ded343e1e"]
+}], "Subsection",ExpressionUUID->"04e8c19f-c5e3-4d1c-aa74-4d741f0bd874"],
+
+Cell["Evaluate $E(1.0, 0.5)$: ", "CodeText",ExpressionUUID->"1ff1ec82-a323-48c8-857e-f59f8f08887f"],
+
+Cell[BoxData[
+ RowBox[{"rEllipticE", "[", 
+  RowBox[{"1.0", ",", "0.5"}], "]"}]], "Input",ExpressionUUID->"0e7b3bca-a94e-\
+4d7f-bd33-a69f08018a99"],
+
+Cell[TextData[{
+ "Incomplete Elliptic Integral of the Third Kind: ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"\[CapitalPi]", "(", 
+         RowBox[{
+           StyleBox["n", "TI"], ";", "\[Phi]", ",", 
+           StyleBox["m", "TI"]}], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\Pi(n; \\phi, m)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "9c1b2832-aa2f-4964-b10e-e503c5d5780d"]
+}], "Subsection",ExpressionUUID->"370e0902-bd89-45d7-bf03-906bb7cbd65c"],
+
+Cell[TextData[{
+ "Note that the argument order is consistent with the built-in ",
+ Cell[BoxData[
+  TemplateBox[{
+   "EllipticPi", "paclet:ref/EllipticPi", 
+    "https://reference.wolfram.com/language/ref/EllipticPi.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "c85d7cc4-0505-43ec-b814-86557a6f9b00"],
+ " (",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{
+         StyleBox["n", "TI"], ",", "\[Phi]", ",", 
+         StyleBox["m", "TI"]}], TraditionalForm], "errors" -> {}, "input" -> 
+     "n, \\phi, m", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "e28723ae-9a03-4900-a704-151270321645"],
+ "): "
+}], "CodeText",ExpressionUUID->"a728ecd7-baf8-47cc-a3aa-94ad13a3e3b6"],
+
+Cell[BoxData[
+ RowBox[{"rEllipticPi", "[", 
+  RowBox[{"0.2", ",", "1.0", ",", "0.5"}], "]"}]], "Input",ExpressionUUID->\
+"a975e598-c3bc-4920-882f-ff4009d6005c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"38931175-0bd5-4487-86c6-0cfb54d62a9c"],
+
+Cell["Bulirsch Elliptic Integrals", "Section",ExpressionUUID->"31234c3c-22e1-42d7-b772-b95c380bed35"],
+
+Cell["\<\
+Bulirsch integrals provide high-speed, general representations of complete \
+and incomplete elliptic integrals. \
+\>", "Text",ExpressionUUID->"b1fc5da4-124a-45c5-abc6-ca75b74bf228"],
+
+Cell[TextData[{
+ "Complete Integral ",
+ Cell[BoxData[Cell["rCel",
+   Background->None,ExpressionUUID->"7581af0c-ff56-4a9e-8b1d-de9b497e1c5b"]], 
+  "InlineCode",ExpressionUUID->"118e2a58-bbb9-40d2-9e23-3854ccf49ee2"]
+}], "Subsection",ExpressionUUID->"3095f8ea-4090-42ed-abc0-d408f1ec3680"],
+
+Cell[TextData[{
+ "Calculate Bulirsch's general complete elliptic integral ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"cel", "(", 
+         RowBox[{
+           SubscriptBox[
+            StyleBox["k", "TI"], 
+            StyleBox["c", "TI"]], ",", 
+           StyleBox["p", "TI"], ",", 
+           StyleBox["a", "TI"], ",", 
+           StyleBox["b", "TI"]}], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\text{cel}(k_c, p, a, b)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "6a04e715-ddb0-4f93-8331-64ceca6ec544"],
+ ": "
+}], "CodeText",ExpressionUUID->"234cd893-dd7c-4f43-90f6-43e6ade13dd7"],
+
+Cell[BoxData[
+ RowBox[{"rCel", "[", 
+  RowBox[{"0.5", ",", "0.2", ",", "1.0", ",", "2.0"}], "]"}]], "Input",Express\
+ionUUID->"d8913c2b-3113-4a0b-844a-b422112b01f3"],
+
+Cell[TextData[{
+ "Incomplete Integral ",
+ Cell[BoxData[Cell["rEl1",
+   Background->None,ExpressionUUID->"87e8284a-8214-476c-86c9-39fdc40bf3be"]], 
+  "InlineCode",ExpressionUUID->"c4403afa-76fc-4edc-90f4-0a82b328c7cd"]
+}], "Subsection",ExpressionUUID->"0a64f51a-5991-41c2-8dba-ba80ba0bf83f"],
+
+Cell[TextData[{
+ "Evaluate Bulirsch's general incomplete elliptic integral of the first kind ",
+ Cell[BoxData[
+  FormBox[
+   TemplateBox[<|"boxes" -> FormBox[
+       RowBox[{"el1", "(", 
+         RowBox[{
+           StyleBox["x", "TI"], ",", 
+           SubscriptBox[
+            StyleBox["k", "TI"], 
+            StyleBox["c", "TI"]]}], ")"}], TraditionalForm], "errors" -> {}, 
+     "input" -> "\\text{el1}(x, k_c)", "state" -> "Boxes"|>,
+    "TeXAssistantTemplate"], TraditionalForm]],ExpressionUUID->
+  "32488497-8015-4e11-8a4f-2ae98cf2365c"],
+ ": "
+}], "CodeText",ExpressionUUID->"7f5950f1-be20-44fe-a742-3e863d79d588"],
+
+Cell[BoxData[
+ RowBox[{"rEl1", "[", 
+  RowBox[{"1.0", ",", "0.5"}], "]"}]], "Input",ExpressionUUID->"24779a29-354e-\
+4412-8af5-4b3cadea1911"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{0},
+      "Spacer1"]},
+    {
+     TemplateBox[{0},
+      "Spacer1"]}
+   },
+   AutoDelete->False,
+   FrameStyle->Directive[
+     LightDarkSwitched[
+      GrayLevel[0.8], 
+      GrayLevel[0.4867756]], 
+     AbsoluteThickness[1]],
+   GridBoxDividers->{
+    "Columns" -> {False, {True}, False}, "Rows" -> {False, {True}, False}},
+   GridBoxItemSize->{"Columns" -> {{Fit}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Text", "MarkdownDelimiter",
+ ShowStringCharacters->False,
+ Background->None,ExpressionUUID->"101abd55-aba0-4ee3-b706-9d146c264877"],
+
+Cell["Carlson Symmetric Integrals", "Section",ExpressionUUID->"08de2c57-56b7-408f-a0c8-c3b9cc3f1d79"],
+
+Cell["\<\
+Carlson symmetric integrals are highly robust and serve as the foundation of \
+modern elliptic evaluation. \
+\>", "Text",ExpressionUUID->"8bf9adc9-1dbd-4aba-a76f-cce63bf8ded5"],
+
+Cell["Carlson $R_F(x, y, z)$", "Subsection",ExpressionUUID->"12e3fa5c-237a-46b7-9780-bf2d19217c7a"],
+
+Cell[BoxData[
+ RowBox[{"rCarlsonRF", "[", 
+  RowBox[{"1.0", ",", "2.0", ",", "3.0"}], "]"}]], "Input",ExpressionUUID->\
+"101d3380-0175-4599-a96b-0edf70d17b5d"],
+
+Cell["Error Handling", "Subsection",ExpressionUUID->"6ce3921b-d15c-4f9a-a6a9-6a8240183e8d"],
+
+Cell[TextData[{
+ "If invalid inputs are provided, the functions cleanly return ",
+ Cell[BoxData[
+  TemplateBox[{
+   "Indeterminate", "paclet:ref/Indeterminate", 
+    "https://reference.wolfram.com/language/ref/Indeterminate.html"},
+   "TextRefLink",
+   DisplayFunction->(TagBox[
+     ButtonBox[
+      StyleBox[#, ShowStringCharacters -> True, FontFamily -> 
+       "Source Sans Pro"], 
+      BaseStyle -> {"Link", FontColor -> LightDarkSwitched[
+          RGBColor[0.02, 0.286, 0.651], 
+          RGBColor[0.2823, 0.6666, 0.949]]}, ButtonData -> #2, ContentPadding -> 
+      False], 
+     MouseAppearanceTag["LinkHand"]]& )]],ExpressionUUID->
+  "88b1058c-481f-42ec-bf58-e73f043c6477"],
+ ": "
+}], "CodeText",ExpressionUUID->"d5d07af3-f1f6-4c89-986d-cfb2fe0a8c7f"],
+
+Cell[BoxData[
+ RowBox[{"rCarlsonRF", "[", 
+  RowBox[{"1.0", ",", "2.0", ",", 
+   RowBox[{"-", "3.0"}]}], "]"}]], "Input",ExpressionUUID->"b3682a29-1d19-\
+45a3-aad6-5d8461dfd077"]
+},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ac6713f0-73fd-4ded-802a-451360157039"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 105, 0, 70, "Title",ExpressionUUID->"ffa1ea89-2123-4a65-9701-a499869cee9d"],
+Cell[662, 22, 355, 6, 70, "Text",ExpressionUUID->"696aa3b2-7970-4921-8161-1ab3cf361a01"],
+Cell[1020, 30, 92, 0, 70, "Section",ExpressionUUID->"941bdcbe-0681-4540-88ea-e95c5aaad4c5"],
+Cell[1115, 32, 191, 3, 70, "CodeText",ExpressionUUID->"f1118012-e0bd-45da-9b93-78fec0b0ca31"],
+Cell[1309, 37, 482, 13, 70, "Input",ExpressionUUID->"1b54d8a7-b26a-4f9f-8f8f-6a4f4e19a209"],
+Cell[1794, 52, 596, 20, 70, "Text",ExpressionUUID->"8117d7d2-0511-46d7-8641-4c336ec6218d"],
+Cell[2393, 74, 110, 0, 70, "Section",ExpressionUUID->"60398cf2-7850-4a1c-97f8-c68e6fce9ed0"],
+Cell[2506, 76, 439, 10, 70, "Text",ExpressionUUID->"df09e999-646e-4398-866e-281746f3c058"],
+Cell[2948, 88, 478, 11, 70, "Subsection",ExpressionUUID->"e2aa5cf2-ccec-4b71-851b-23f5a79a1054"],
+Cell[3429, 101, 117, 0, 70, "CodeText",ExpressionUUID->"1cdbc98c-cbbf-4d8a-9016-eea156d1b12d"],
+Cell[3549, 103, 120, 1, 70, "Input",ExpressionUUID->"d97b17ab-d521-45f9-842e-4cd784a48b37"],
+Cell[3672, 106, 715, 18, 70, "CodeText",ExpressionUUID->"f3b9841c-6ff2-4807-98db-17f8828f4a17"],
+Cell[4390, 126, 183, 4, 70, "Input",ExpressionUUID->"8229d350-c625-48b8-9ca9-4273e8c57aa6"],
+Cell[4576, 132, 479, 11, 70, "Subsection",ExpressionUUID->"7b580c18-9564-4e29-8d35-2bd2d58f4ace"],
+Cell[5058, 145, 94, 0, 70, "CodeText",ExpressionUUID->"51df9b93-ed85-4ab1-a7f4-21cc0868dd9f"],
+Cell[5155, 147, 120, 1, 70, "Input",ExpressionUUID->"dd5ad505-9524-4a2b-a93f-647ac81a4c09"],
+Cell[5278, 150, 596, 20, 70, "Text",ExpressionUUID->"751c0b2a-e5d4-4ff4-bbe3-be26c14efd07"],
+Cell[5877, 172, 112, 0, 70, "Section",ExpressionUUID->"a5f3670a-680b-4a13-b29a-3a45605ae240"],
+Cell[5992, 174, 525, 12, 70, "Subsection",ExpressionUUID->"04e8c19f-c5e3-4d1c-aa74-4d741f0bd874"],
+Cell[6520, 188, 99, 0, 70, "CodeText",ExpressionUUID->"1ff1ec82-a323-48c8-857e-f59f8f08887f"],
+Cell[6622, 190, 147, 3, 70, "Input",ExpressionUUID->"0e7b3bca-a94e-4d7f-bd33-a69f08018a99"],
+Cell[6772, 195, 553, 12, 70, "Subsection",ExpressionUUID->"370e0902-bd89-45d7-bf03-906bb7cbd65c"],
+Cell[7328, 209, 1118, 28, 70, "CodeText",ExpressionUUID->"a728ecd7-baf8-47cc-a3aa-94ad13a3e3b6"],
+Cell[8449, 239, 160, 3, 70, "Input",ExpressionUUID->"a975e598-c3bc-4920-882f-ff4009d6005c"],
+Cell[8612, 244, 596, 20, 70, "Text",ExpressionUUID->"38931175-0bd5-4487-86c6-0cfb54d62a9c"],
+Cell[9211, 266, 101, 0, 70, "Section",ExpressionUUID->"31234c3c-22e1-42d7-b772-b95c380bed35"],
+Cell[9315, 268, 191, 3, 70, "Text",ExpressionUUID->"b1fc5da4-124a-45c5-abc6-ca75b74bf228"],
+Cell[9509, 273, 288, 5, 70, "Subsection",ExpressionUUID->"3095f8ea-4090-42ed-abc0-d408f1ec3680"],
+Cell[9800, 280, 687, 17, 70, "CodeText",ExpressionUUID->"234cd893-dd7c-4f43-90f6-43e6ade13dd7"],
+Cell[10490, 299, 165, 3, 70, "Input",ExpressionUUID->"d8913c2b-3113-4a0b-844a-b422112b01f3"],
+Cell[10658, 304, 290, 5, 70, "Subsection",ExpressionUUID->"0a64f51a-5991-41c2-8dba-ba80ba0bf83f"],
+Cell[10951, 311, 624, 15, 70, "CodeText",ExpressionUUID->"7f5950f1-be20-44fe-a742-3e863d79d588"],
+Cell[11578, 328, 141, 3, 70, "Input",ExpressionUUID->"24779a29-354e-4412-8af5-4b3cadea1911"],
+Cell[11722, 333, 596, 20, 70, "Text",ExpressionUUID->"101abd55-aba0-4ee3-b706-9d146c264877"],
+Cell[12321, 355, 101, 0, 70, "Section",ExpressionUUID->"08de2c57-56b7-408f-a0c8-c3b9cc3f1d79"],
+Cell[12425, 357, 186, 3, 70, "Text",ExpressionUUID->"8bf9adc9-1dbd-4aba-a76f-cce63bf8ded5"],
+Cell[12614, 362, 99, 0, 70, "Subsection",ExpressionUUID->"12e3fa5c-237a-46b7-9780-bf2d19217c7a"],
+Cell[12716, 364, 159, 3, 70, "Input",ExpressionUUID->"101d3380-0175-4599-a96b-0edf70d17b5d"],
+Cell[12878, 369, 91, 0, 70, "Subsection",ExpressionUUID->"6ce3921b-d15c-4f9a-a6a9-6a8240183e8d"],
+Cell[12972, 371, 762, 18, 70, "CodeText",ExpressionUUID->"d5d07af3-f1f6-4c89-986d-cfb2fe0a8c7f"],
+Cell[13737, 391, 178, 4, 70, "Input",ExpressionUUID->"b3682a29-1d19-45a3-aad6-5d8461dfd077"]
+}
+]
+*)
+
+(* End of internal cache information *)
