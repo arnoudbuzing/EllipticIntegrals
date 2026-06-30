@@ -4,7 +4,7 @@ A high-performance Wolfram Language paclet for evaluating classical Legendre ell
 
 ## Description
 
-The **EllipticIntegrals** paclet is a high-performance extension for the Wolfram Language that provides lightning-fast evaluation of classical Legendre elliptic integrals and Carlson symmetric forms. By leveraging a highly optimized Rust backend (`elliptic-integrals` crate) compiled to native machine code and integrated via LibraryLink, the paclet bypasses the overhead of symbolic parsing and arbitrary-precision systems. This makes it an ideal tool for physical simulations, geodesic computations, and engineering pipelines that require evaluating elliptic functions over large numerical datasets at speed.
+The **EllipticIntegrals** paclet is a high-performance extension for the Wolfram Language that provides lightning-fast evaluation of classical Legendre elliptic integrals and Carlson symmetric forms. By leveraging a highly optimized Rust backend (`ellip` crate) compiled to native machine code and integrated via LibraryLink, the paclet bypasses the overhead of symbolic parsing and arbitrary-precision systems. This makes it an ideal tool for physical simulations, geodesic computations, and engineering pipelines that require evaluating elliptic functions over large numerical datasets at speed.
 
 Benchmarks show substantial performance improvements—often executing between 5x to 30x faster than the built-in, general-purpose Wolfram Language implementations when evaluating machine-precision reals. By utilizing efficient, iterative arithmetic-geometric mean (AGM) algorithms and avoiding numerical caching bottlenecks, the package enables rapid processing of millions of coordinates in fractions of a second.
 
