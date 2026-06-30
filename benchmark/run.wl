@@ -4,7 +4,7 @@ $projectDir = DirectoryName[DirectoryName[$InputFileName]];
 $pacletDir = FileNameJoin[{$projectDir, "EllipticIntegrals"}];
 
 PacletDirectoryLoad[$pacletDir];
-Needs["ArnoudBuzing`EllipticIntegrals`"];
+Quiet[Needs["ArnoudBuzing`EllipticIntegrals`" -> "ei`"]];
 
 Print["Generating benchmark datasets (10,000 elements each)..."];
 SeedRandom[12345];
@@ -60,16 +60,16 @@ runBenchmark[name_String, fRust_, fWL_, data_] := Module[
 ]
 
 Print["\nStarting benchmarks..."];
-runBenchmark["rEllipticK / EllipticK", rEllipticK, EllipticK, dataLegendre1D];
-runBenchmark["rEllipticE / EllipticE", rEllipticE, EllipticE, dataLegendre1D];
-runBenchmark["rEllipticPi / EllipticPi", rEllipticPi, EllipticPi, dataLegendre2D];
-runBenchmark["rEllipticD / (K-E)/m", rEllipticD, (EllipticK[#] - EllipticE[#])/# &, dataLegendre1D];
+runBenchmark["EllipticK", ei`EllipticK, EllipticK, dataLegendre1D];
+runBenchmark["EllipticE", ei`EllipticE, EllipticE, dataLegendre1D];
+runBenchmark["EllipticPi", ei`EllipticPi, EllipticPi, dataLegendre2D];
+runBenchmark["EllipticD", ei`EllipticD, (EllipticK[#] - EllipticE[#])/# &, dataLegendre1D];
 
-runBenchmark["rCarlsonRF / CarlsonRF", rCarlsonRF, CarlsonRF, dataCarlson3D];
-runBenchmark["rCarlsonRG / CarlsonRG", rCarlsonRG, CarlsonRG, dataCarlson3D];
-runBenchmark["rCarlsonRD / CarlsonRD", rCarlsonRD, CarlsonRD, dataCarlson3D];
-runBenchmark["rCarlsonRJ / CarlsonRJ", rCarlsonRJ, CarlsonRJ, dataCarlson4D];
-runBenchmark["rCarlsonRC / CarlsonRC", rCarlsonRC, CarlsonRC, dataCarlson2D];
+runBenchmark["CarlsonRF", ei`CarlsonRF, CarlsonRF, dataCarlson3D];
+runBenchmark["CarlsonRG", ei`CarlsonRG, CarlsonRG, dataCarlson3D];
+runBenchmark["CarlsonRD", ei`CarlsonRD, CarlsonRD, dataCarlson3D];
+runBenchmark["CarlsonRJ", ei`CarlsonRJ, CarlsonRJ, dataCarlson4D];
+runBenchmark["CarlsonRC", ei`CarlsonRC, CarlsonRC, dataCarlson2D];
 
 Print["Benchmarks completed! Generating HTML report..."];
 

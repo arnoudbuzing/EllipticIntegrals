@@ -10,24 +10,30 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     11743,        282]
-NotebookOptionsPosition[      9967,        254]
-NotebookOutlinePosition[     10284,        268]
-CellTagsIndexPosition[     10241,        265]
+NotebookDataLength[     12272,        291]
+NotebookOptionsPosition[     10493,        263]
+NotebookOutlinePosition[     10810,        277]
+CellTagsIndexPosition[     10767,        274]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
-Cell["EllipticIntegrals Performance Benchmarks", "Title",ExpressionUUID->"00057106-a9a0-471e-945a-dc9180dd21b2"],
+Cell["EllipticIntegrals Performance Benchmarks", "Title",ExpressionUUID->"36a6316f-ba68-4c47-b313-46debe955975"],
 
 Cell["\<\
 This notebook benchmarks the performance of the Rust-bound paclet functions \
 against Wolfram Language's built-in elliptic integrals. \
-\>", "Text",ExpressionUUID->"0064a4ee-0f39-4dc6-81f8-0313fb21677c"],
+\>", "Text",ExpressionUUID->"69fb9d94-ef1a-471a-8647-ba93b26f1b6f"],
 
-Cell["Loading the Paclet", "Section",ExpressionUUID->"c354096d-394b-416d-8137-347aa843e706"],
+Cell["Loading the Paclet", "Section",ExpressionUUID->"7cea6fa7-8c73-4961-8112-45531e96abe6"],
 
-Cell["Ensure the paclet is loaded: ", "CodeText",ExpressionUUID->"ac622102-385d-4606-9a15-97cf79dc9eda"],
+Cell[TextData[{
+ "Ensure the paclet is loaded with the ",
+ Cell[BoxData[Cell["ei`",
+   Background->None,ExpressionUUID->"adf5431d-3001-4f58-b9d4-e26b6cd8e1a9"]], 
+  "InlineCode",ExpressionUUID->"ddd0c90f-7531-4571-83b3-f44e1edad2f2"],
+ " alias context: "
+}], "CodeText",ExpressionUUID->"0c3f51a0-4b63-41b0-87d5-2482f4644588"],
 
 Cell[BoxData[
  RowBox[{
@@ -39,17 +45,17 @@ Cell[BoxData[
     RowBox[{"PacletDirectoryLoad", "[", 
      RowBox[{"DirectoryName", "[", 
       RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{
-   "Needs", "[", "\"\<ArnoudBuzing`EllipticIntegrals`\>\"", 
-    "]"}]}]}]], "Input",ExpressionUUID->"d521223f-a8c0-4ce0-8740-\
-62f43ca69ddc"],
+   RowBox[{"Needs", "[", 
+    RowBox[{"\"\<ArnoudBuzing`EllipticIntegrals`\>\"", "->", "\"\<ei`\>\""}], 
+    "]"}]}]}]], "Input",ExpressionUUID->"6a8a0edf-615a-4ceb-834b-\
+b7aa2bb071ed"],
 
-Cell["Generating Benchmark Datasets", "Section",ExpressionUUID->"a42eec6d-4d2e-419b-afab-fc5990d3c155"],
+Cell["Generating Benchmark Datasets", "Section",ExpressionUUID->"998ac81e-ebf2-4a0a-ac4c-945ef4ed0f1f"],
 
 Cell["\<\
 We generate large lists of random, unique real numbers to evaluate our \
 functions over: \
-\>", "CodeText",ExpressionUUID->"46565677-d9db-4a50-bb2b-a93319c608f0"],
+\>", "CodeText",ExpressionUUID->"beb20ad7-8cd8-4ef0-9d4a-0eb7a9d9fa7f"],
 
 Cell[BoxData[{
  RowBox[{
@@ -103,14 +109,14 @@ Cell[BoxData[{
       RowBox[{"0.01", ",", "10.0"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{"nPoints", ",", "4"}], "}"}]}], "]"}]}], ";"}]}], "Input",Expres\
-sionUUID->"431c1b0f-7aac-4de1-b034-08238ce73258"],
+sionUUID->"fb29552f-fab0-4397-a268-aca431666ce3"],
 
-Cell["Benchmarking Function", "Section",ExpressionUUID->"fc04780b-bf48-4539-b270-9e8177fc0259"],
+Cell["Benchmarking Function", "Section",ExpressionUUID->"26ad4366-1f3f-462a-8823-24c880b9fa7b"],
 
 Cell["\<\
 We define a helper function to measure absolute timing for both Rust and \
 built-in WL: \
-\>", "CodeText",ExpressionUUID->"2b29e828-be62-4ca8-a63d-9066db985129"],
+\>", "CodeText",ExpressionUUID->"a89bf72d-004d-4b63-92a5-54e59f2f8479"],
 
 Cell[BoxData[
  RowBox[{
@@ -204,11 +210,11 @@ Cell[BoxData[
          RowBox[{
           RowBox[{"tWL", "/", "tRust"}], ",", "0.1"}], "]"}]}]}], 
       "\[IndentingNewLine]", "  ", "|>"}]}]}], "\[IndentingNewLine]", 
-   "]"}]}]], "Input",ExpressionUUID->"711e37bc-0857-46bf-9170-2c74bfce877a"],
+   "]"}]}]], "Input",ExpressionUUID->"09c5d789-d396-4983-8f33-13d339648e65"],
 
-Cell["Running the Benchmarks", "Section",ExpressionUUID->"44cf73b8-84d1-49fc-95a1-b377582a9d07"],
+Cell["Running the Benchmarks", "Section",ExpressionUUID->"97cc8b73-4df8-4a11-9704-f30cd4a1e2d7"],
 
-Cell["Execute the speed comparisons: ", "CodeText",ExpressionUUID->"b85a612b-de93-4a78-b562-3c367a0b843c"],
+Cell["Execute the speed comparisons: ", "CodeText",ExpressionUUID->"56a02302-6a52-45e9-90cf-180a0e9ea212"],
 
 Cell[BoxData[
  RowBox[{
@@ -216,41 +222,44 @@ Cell[BoxData[
    RowBox[{"{", "\[IndentingNewLine]", "  ", 
     RowBox[{
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rEllipticK / EllipticK\>\"", ",", "rEllipticK", ",", 
-       "EllipticK", ",", "dataLegendre1D"}], "]"}], ",", 
-     "\[IndentingNewLine]", "  ", 
+      RowBox[{"\"\<EllipticK\>\"", ",", "ei`EllipticK", ",", "EllipticK", ",",
+        "dataLegendre1D"}], "]"}], ",", "\[IndentingNewLine]", "  ", 
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rEllipticE / EllipticE\>\"", ",", "rEllipticE", ",", 
-       "EllipticE", ",", "dataLegendre1D"}], "]"}], ",", 
-     "\[IndentingNewLine]", "  ", 
+      RowBox[{"\"\<EllipticE\>\"", ",", "ei`EllipticE", ",", "EllipticE", ",",
+        "dataLegendre1D"}], "]"}], ",", "\[IndentingNewLine]", "  ", 
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rEllipticPi / EllipticPi\>\"", ",", "rEllipticPi", ",", 
-       "EllipticPi", ",", "dataLegendre2D"}], "]"}], ",", 
-     "\[IndentingNewLine]", "  ", 
+      RowBox[{"\"\<EllipticPi\>\"", ",", "ei`EllipticPi", ",", "EllipticPi", ",",
+        "dataLegendre2D"}], "]"}], ",", "\[IndentingNewLine]", "  ", 
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rCarlsonRF / CarlsonRF\>\"", ",", "rCarlsonRF", ",", 
-       "CarlsonRF", ",", "dataCarlson3D"}], "]"}], ",", "\[IndentingNewLine]",
-      "  ", 
+      RowBox[{"\"\<EllipticD\>\"", ",", "ei`EllipticD", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"EllipticK", "[", "#", "]"}], "-", 
+           RowBox[{"EllipticE", "[", "#", "]"}]}], ")"}], "/", "#"}], " ", 
+        "&"}], ",", "dataLegendre1D"}], "]"}], ",", "\[IndentingNewLine]", 
+     "  ", 
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rCarlsonRG / CarlsonRG\>\"", ",", "rCarlsonRG", ",", 
-       "CarlsonRG", ",", "dataCarlson3D"}], "]"}], ",", "\[IndentingNewLine]",
-      "  ", 
+      RowBox[{"\"\<CarlsonRF\>\"", ",", "ei`CarlsonRF", ",", "CarlsonRF", ",",
+        "dataCarlson3D"}], "]"}], ",", "\[IndentingNewLine]", "  ", 
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rCarlsonRD / CarlsonRD\>\"", ",", "rCarlsonRD", ",", 
-       "CarlsonRD", ",", "dataCarlson3D"}], "]"}], ",", "\[IndentingNewLine]",
-      "  ", 
+      RowBox[{"\"\<CarlsonRG\>\"", ",", "ei`CarlsonRG", ",", "CarlsonRG", ",",
+        "dataCarlson3D"}], "]"}], ",", "\[IndentingNewLine]", "  ", 
      RowBox[{"runBenchmark", "[", 
-      RowBox[{"\"\<rCarlsonRJ / CarlsonRJ\>\"", ",", "rCarlsonRJ", ",", 
-       "CarlsonRJ", ",", "dataCarlson4D"}], "]"}]}], "\[IndentingNewLine]", 
-    "}"}]}], ";"}]], "Input",ExpressionUUID->"9f3dc1db-a939-49a4-b831-\
-b8eb5b039cfa"],
+      RowBox[{"\"\<CarlsonRD\>\"", ",", "ei`CarlsonRD", ",", "CarlsonRD", ",",
+        "dataCarlson3D"}], "]"}], ",", "\[IndentingNewLine]", "  ", 
+     RowBox[{"runBenchmark", "[", 
+      RowBox[{"\"\<CarlsonRJ\>\"", ",", "ei`CarlsonRJ", ",", "CarlsonRJ", ",",
+        "dataCarlson4D"}], "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+  ";"}]], "Input",ExpressionUUID->"91c5a246-f0ab-49db-ba88-3029e60f94f4"],
 
-Cell["Displaying Results", "Section",ExpressionUUID->"c2ffa0a0-63f0-429e-a03d-d33c49148278"],
+Cell["Displaying Results", "Section",ExpressionUUID->"a1a68a62-f863-46bd-a351-2838572d3c9b"],
 
-Cell["Display the timing metrics as a dataset: ", "CodeText",ExpressionUUID->"85363431-fac2-46bb-984c-56bd4ee2307c"],
+Cell["Display the timing metrics as a dataset: ", "CodeText",ExpressionUUID->"4a4cc16a-03a7-4383-89df-ee7476ec6450"],
 
 Cell[BoxData[
- RowBox[{"Dataset", "[", "results", "]"}]], "Input",ExpressionUUID->"439c2112-0389-4e9d-b734-a8bc0556ab07"]
+ RowBox[{"Dataset", "[", "results", "]"}]], "Input",ExpressionUUID->"0e421a6a-882e-4ee7-a889-f757edac0c1b"]
 },
 FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (May 19, 2026)",
 StyleDefinitions->"Default.nb",
@@ -267,23 +276,23 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 112, 0, 70, "Title",ExpressionUUID->"00057106-a9a0-471e-945a-dc9180dd21b2"],
-Cell[669, 22, 213, 3, 70, "Text",ExpressionUUID->"0064a4ee-0f39-4dc6-81f8-0313fb21677c"],
-Cell[885, 27, 92, 0, 70, "Section",ExpressionUUID->"c354096d-394b-416d-8137-347aa843e706"],
-Cell[980, 29, 104, 0, 70, "CodeText",ExpressionUUID->"ac622102-385d-4606-9a15-97cf79dc9eda"],
-Cell[1087, 31, 482, 13, 70, "Input",ExpressionUUID->"d521223f-a8c0-4ce0-8740-62f43ca69ddc"],
-Cell[1572, 46, 103, 0, 70, "Section",ExpressionUUID->"a42eec6d-4d2e-419b-afab-fc5990d3c155"],
-Cell[1678, 48, 172, 3, 70, "CodeText",ExpressionUUID->"46565677-d9db-4a50-bb2b-a93319c608f0"],
-Cell[1853, 53, 1804, 52, 70, "Input",ExpressionUUID->"431c1b0f-7aac-4de1-b034-08238ce73258"],
-Cell[3660, 107, 95, 0, 70, "Section",ExpressionUUID->"fc04780b-bf48-4539-b270-9e8177fc0259"],
-Cell[3758, 109, 171, 3, 70, "CodeText",ExpressionUUID->"2b29e828-be62-4ca8-a63d-9066db985129"],
-Cell[3932, 114, 3894, 92, 70, "Input",ExpressionUUID->"711e37bc-0857-46bf-9170-2c74bfce877a"],
-Cell[7829, 208, 96, 0, 70, "Section",ExpressionUUID->"44cf73b8-84d1-49fc-95a1-b377582a9d07"],
-Cell[7928, 210, 106, 0, 70, "CodeText",ExpressionUUID->"b85a612b-de93-4a78-b562-3c367a0b843c"],
-Cell[8037, 212, 1588, 33, 70, "Input",ExpressionUUID->"9f3dc1db-a939-49a4-b831-b8eb5b039cfa"],
-Cell[9628, 247, 92, 0, 70, "Section",ExpressionUUID->"c2ffa0a0-63f0-429e-a03d-d33c49148278"],
-Cell[9723, 249, 116, 0, 70, "CodeText",ExpressionUUID->"85363431-fac2-46bb-984c-56bd4ee2307c"],
-Cell[9842, 251, 121, 1, 70, "Input",ExpressionUUID->"439c2112-0389-4e9d-b734-a8bc0556ab07"]
+Cell[554, 20, 112, 0, 70, "Title",ExpressionUUID->"36a6316f-ba68-4c47-b313-46debe955975"],
+Cell[669, 22, 213, 3, 70, "Text",ExpressionUUID->"69fb9d94-ef1a-471a-8647-ba93b26f1b6f"],
+Cell[885, 27, 92, 0, 70, "Section",ExpressionUUID->"7cea6fa7-8c73-4961-8112-45531e96abe6"],
+Cell[980, 29, 325, 6, 70, "CodeText",ExpressionUUID->"0c3f51a0-4b63-41b0-87d5-2482f4644588"],
+Cell[1308, 37, 514, 13, 70, "Input",ExpressionUUID->"6a8a0edf-615a-4ceb-834b-b7aa2bb071ed"],
+Cell[1825, 52, 103, 0, 70, "Section",ExpressionUUID->"998ac81e-ebf2-4a0a-ac4c-945ef4ed0f1f"],
+Cell[1931, 54, 172, 3, 70, "CodeText",ExpressionUUID->"beb20ad7-8cd8-4ef0-9d4a-0eb7a9d9fa7f"],
+Cell[2106, 59, 1804, 52, 70, "Input",ExpressionUUID->"fb29552f-fab0-4397-a268-aca431666ce3"],
+Cell[3913, 113, 95, 0, 70, "Section",ExpressionUUID->"26ad4366-1f3f-462a-8823-24c880b9fa7b"],
+Cell[4011, 115, 171, 3, 70, "CodeText",ExpressionUUID->"a89bf72d-004d-4b63-92a5-54e59f2f8479"],
+Cell[4185, 120, 3894, 92, 70, "Input",ExpressionUUID->"09c5d789-d396-4983-8f33-13d339648e65"],
+Cell[8082, 214, 96, 0, 70, "Section",ExpressionUUID->"97cc8b73-4df8-4a11-9704-f30cd4a1e2d7"],
+Cell[8181, 216, 106, 0, 70, "CodeText",ExpressionUUID->"56a02302-6a52-45e9-90cf-180a0e9ea212"],
+Cell[8290, 218, 1861, 36, 70, "Input",ExpressionUUID->"91c5a246-f0ab-49db-ba88-3029e60f94f4"],
+Cell[10154, 256, 92, 0, 70, "Section",ExpressionUUID->"a1a68a62-f863-46bd-a351-2838572d3c9b"],
+Cell[10249, 258, 116, 0, 70, "CodeText",ExpressionUUID->"4a4cc16a-03a7-4383-89df-ee7476ec6450"],
+Cell[10368, 260, 121, 1, 70, "Input",ExpressionUUID->"0e421a6a-882e-4ee7-a889-f757edac0c1b"]
 }
 ]
 *)
